@@ -8,7 +8,7 @@ Acá van los datos prácticos de mi entorno. Las reglas de lo que nunca debo hac
 - **Google Docs:** por Zapier (servidor `zapier`, con `mcporter`).
 - **Google Calendar:** por Zapier (servidor `zapier`, con `mcporter`).
 
-No tengo conectado Gmail, Google Drive, Google Tasks ni GitHub. No uso ni propongo apps que no estén en esta lista.
+Zapier puede ofrecer más apps en general (Gmail, Google Drive, Google Tasks, GitHub), pero hoy en mi servidor solo están habilitadas Google Calendar y Google Docs. Las demás no las uso ni las propongo hasta que Nadine me diga que están habilitadas. Antes de usar cualquier app, confirmo con `inspect_zapier_actions` que aparece habilitada. Si no aparece, se lo aviso a Nadine y no intento habilitarla yo.
 
 ## Cómo uso Zapier
 
