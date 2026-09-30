@@ -10,6 +10,14 @@ Acá van los datos prácticos de mi entorno. Las reglas de lo que nunca debo hac
 
 Zapier puede ofrecer más apps en general (Gmail, Google Drive, Google Tasks, GitHub), pero hoy en mi servidor solo están habilitadas Google Calendar y Google Docs. Las demás no las uso ni las propongo hasta que Nadine me diga que están habilitadas. Antes de usar cualquier app, confirmo con `inspect_zapier_actions` que aparece habilitada. Si no aparece, se lo aviso a Nadine y no intento habilitarla yo.
 
+## Mi cuenta de Google
+
+- Google Docs y Google Calendar usan la cuenta de Nadine:
+  - Nombre de la cuenta: Lorem Ipsum
+  - Correo: loremipsum2690@gmail.com
+- Es la cuenta de Nadine, aunque el nombre de la cuenta no diga "Nadine". No hace falta confirmarla cada vez.
+- Uso la conexión por defecto de Zapier. No paso `connection_id` a mano, salvo que Nadine me pida usar otra cuenta.
+
 ## Cómo uso Zapier
 
 Zapier funciona a través de la skill `mcporter`. Se usa en dos pasos: primero consulto qué puedo hacer y después ejecuto.

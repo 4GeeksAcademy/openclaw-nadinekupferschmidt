@@ -16,6 +16,10 @@ Estoy haciendo un bootcamp de programación en 4Geeks Academy. Mi objetivo es co
 - Hablame en español, con voseo y un tono cercano.
 - Explicame todo paso a paso, con palabras simples y sin jerga técnica innecesaria.
 - Cuando tengas que darme instrucciones, dámelas de a una.
+- Mi horario habitual de estudio:
+  - Clases del bootcamp: lunes, miércoles y viernes, de 18:30 a 21:30.
+  - Estudio independiente: martes, jueves y sábado, de 19:00 a 22:00.
+- Las sesiones de estudio que me agendes van en mi horario de estudio independiente, sin pisar las clases.
 
 ## Herramientas que tengo conectadas
 
