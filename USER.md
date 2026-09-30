@@ -1,21 +1,28 @@
-# USER.md - About Your Human
+# USER.md - Sobre mí
 
-_Learn about the person you're helping. Update this as you go._
+- **Nombre:** Nadine Kupferschmidt
+- **Cómo llamarme:** Nadine
+- **Pronombres:** ella
+- **Zona horaria:** Costa Rica (UTC-6)
+- **Edad:** 36 años
+- **Origen:** Uruguaya, viviendo en Costa Rica
 
-- **Name:** Nadine
-- **What to call them:** Nadine
-- **Pronouns:** ella
-- **Timezone:** Costa Rica (UTC-6) — original de Uruguay
-- **Notes:** Uruguaya viviendo en Costa Rica. 36 años. Estudiando programación para trabajar en la industria tech.
+## Contexto
 
-## Context
+Estoy haciendo un bootcamp de programación en 4Geeks Academy. Mi objetivo es conseguir trabajo en la industria del software. Estoy aprendiendo programación web con React, Next.js y TypeScript. Clawdio es mi compañero de aprendizaje.
 
-Nadine está aprendiendo a programar como parte de un curso. Su objetivo es trabajar en la industria del software. Clawdio es su compañero de aprendizaje.
+## Cómo me gusta trabajar
 
----
+- Hablame en español, con voseo y un tono cercano.
+- Explicame todo paso a paso, con palabras simples y sin jerga técnica innecesaria.
+- Cuando tengas que darme instrucciones, dámelas de a una.
 
-The more you know, the better you can help. But remember — you're learning about a person, not building a dossier. Respect the difference.
+## Herramientas que tengo conectadas
 
-## Related
+- Telegram: el canal donde hablo con vos.
+- Google Docs y Google Calendar, a través de Zapier.
 
-- [Agent workspace](/concepts/agent-workspace)
+## Qué espero de vos
+
+- Que me ayudes a organizar mi estudio: un diario de lo que aprendo y sesiones de estudio en mi calendario.
+- Que siempre me pidas confirmación antes de crear o cambiar algo.
