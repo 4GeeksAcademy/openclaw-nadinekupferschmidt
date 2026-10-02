@@ -143,6 +143,38 @@ Para entender el motivo probé varios endpoints con una consulta directa desde l
 
 El token es válido (las otras consultas dan 200), así que el 403 significa que esos endpoints no están disponibles con un token de estudiante, aunque aparezcan en la referencia del curso. En su lugar construí las skills de ejercicios y de eventos, que sí funcionan.
 
+## Correcciones posteriores: skills 2 y 4
+
+Al revisar las respuestas del agente con mis datos reales, encontré que las skills de proyectos (2) y de progreso (4) mostraban información incompleta, por el mismo problema que había tenido la skill 3. Las corregí con el agente, de a una.
+
+**El problema:** las dos solo miraban el estado de entrega (`task_status`) y no el de revisión del instructor (`revision_status`). Resultado: decían "0 aprobados" aunque tengo 17 proyectos aprobados, y un proyecto rechazado (*Milestone 2*) aparecía como "entregado". Además, la misma tarea aparece en varios cohortes, y se identifica por `associated_slug`.
+
+### Skill 2: breathecode-projects (corrección)
+
+**Prompt:**
+
+> Encontré un problema de exactitud en breathecode-projects: solo mira task_status (la entrega) y no revision_status (la revisión del instructor), por eso no muestra los proyectos aprobados ni los rechazados. Además, la misma tarea aparece en varios cohortes y se identifica por associated_slug. Actualizá la skill así: (1) agrupá las apariciones por associated_slug, para contar cada proyecto una sola vez; (2) si el proyecto está aprobado (revision_status APPROVED) en algún cohorte, mostralo como "Aprobado", aunque figure pendiente en otro; (3) si no, si está entregado (task_status DONE) con revision_status REJECTED, mostralo como "Requiere correcciones"; (4) si está entregado con revision_status PENDING, mostralo como "Entregado, esperando revisión"; (5) si no está entregado en ningún cohorte, mostralo como "Pendiente de entregar"; (6) en cada proyecto mostrá el título y el estado, y el cohorte donde tiene ese estado; (7) al final dá los totales por estado, sobre proyectos únicos. Solo lectura, sin mostrar el token, un solo endpoint.
+
+**Qué hace ahora:** lista cada proyecto una sola vez, con un único estado (Aprobado, Requiere correcciones, Entregado esperando revisión o Pendiente de entregar), el cohorte y los totales por estado.
+
+**Prueba:** 29 apariciones agrupadas en 23 proyectos únicos. Totales: 17 aprobados, 1 requiere correcciones, 1 entregado esperando revisión y 4 pendientes de entregar. Verifiqué que coincide con las consultas directas que hice a la API desde la terminal.
+
+### Skill 4: breathecode-progress (corrección)
+
+**Prompt:**
+
+> Encontré el mismo problema de exactitud en breathecode-progress: solo mira task_status (la entrega) y no revision_status (la revisión del instructor), por eso muestra 0 aprobadas. Además, la misma tarea aparece en varios cohortes y se identifica por associated_slug. Actualizá la skill así: (1) agrupá las apariciones por associated_slug, para contar cada tarea una sola vez; (2) si la tarea está aprobada (revision_status APPROVED) en algún cohorte, contala como "Aprobada"; (3) si no, si está entregada (task_status DONE) con revision_status REJECTED, "Requiere correcciones"; (4) si está entregada con revision_status PENDING, "Entregada, esperando revisión"; (5) si no está entregada en ningún cohorte, "Pendiente de entregar"; (6) mostrá los totales por estado y por tipo (PROJECT, EXERCISE, LESSON, QUIZ), sobre tareas únicas; (7) calculá el porcentaje de avance como las tareas aprobadas o entregadas sobre el total de tareas únicas, y mostralo también solo para proyectos. Resumen corto y en español. Solo lectura, sin mostrar el token, un solo endpoint.
+
+**Qué hace ahora:** cuenta cada tarea una sola vez, con un único estado, y calcula el avance general y el avance de proyectos.
+
+**Prueba:** 173 apariciones agrupadas en 136 tareas únicas.
+- Por estado: 86 aprobadas, 1 requiere correcciones, 21 entregadas esperando revisión y 28 pendientes de entregar.
+- Por tipo: 23 proyectos, 86 ejercicios, 27 lecciones y 0 cuestionarios.
+- Avance general: 79,4 % (108 de 136 aprobadas o entregadas).
+- Avance de proyectos: 82,6 % (19 de 23 aprobados o entregados), que coincide con lo que calculé a mano a partir de la skill de proyectos.
+
+**Qué aprendí:** probar una skill con mis datos reales fue lo que hizo aparecer los problemas. Los números que salen de distintas skills tienen que coincidir entre sí, y conviene compararlos con la plataforma.
+
 ## Qué aprendí
 
 - Cada skill tiene una sola responsabilidad y consulta un endpoint (o dos muy relacionados), y se puede combinar en la conversación.
@@ -150,3 +182,5 @@ El token es válido (las otras consultas dan 200), así que el 403 significa que
 - Antes de culpar al token conviene probar la API directamente, sin el agente, para saber dónde está el problema.
 - Los nombres de las etiquetas (como `reactjs`) hay que consultarlos, no suponerlos.
 - Las skills siguen un mismo esquema: qué necesitan (el token y los parámetros), qué hacen (los pasos), qué devuelven, cómo manejan los errores (401/403, red, lista vacía) y cómo las probé.
+- Cada tarea de 4Geeks tiene dos estados distintos: `task_status` (si la entregué) y `revision_status` (qué dijo el instructor). Para saber si algo está aprobado hay que mirar el segundo, no el primero.
+- La misma tarea puede aparecer en varios cohortes con estados diferentes, y se identifica por `associated_slug`. Para contarla una sola vez hay que agrupar por ese campo.
